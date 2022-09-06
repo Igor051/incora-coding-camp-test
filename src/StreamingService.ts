@@ -47,8 +47,8 @@ export class StreamingService {
         let ShowsWithTheSameYear: Show[] = this.shows.filter((show) => {
             return show.releaseDate.getFullYear() === year
         })
-
-        if (!ShowsWithTheSameYear.length) {
+        //no need to choose 10 shows if there are less or equal than 10
+        if (ShowsWithTheSameYear.length <= 10) {
             return ShowsWithTheSameYear
         }
 
@@ -59,8 +59,8 @@ export class StreamingService {
         let ShowsWithTheSameGenre: Show[] = this.shows.filter((show) => {
             return show.genre === genre
         })
-
-        if (!ShowsWithTheSameGenre.length) {
+        //no need to choose 10 shows if there are less or equal than 10
+        if (ShowsWithTheSameGenre.length < 10) {
             return ShowsWithTheSameGenre
         }
 

@@ -1,7 +1,7 @@
 import {StreamingService} from "./StreamingService";
 import {Show} from "./shows";
 import {genres} from "./genres";
-import {showWithSelectedGenreExistence} from "./validators";
+import {showExistence, showWithSelectedGenreExistence} from "./validators";
 
 export default class Subscription {
     readonly streamingService: StreamingService
@@ -14,9 +14,7 @@ export default class Subscription {
     watch(showName: string): void {
         let currentShowViews = this.streamingService.viewsByShowNames.get(showName)
 
-        if (currentShowViews === undefined) {
-            throw new Error("This show doesn't exist")
-        }
+        showExistence(currentShowViews)
 
         this.streamingService.viewsByShowNames.set(showName, currentShowViews + 1)
     }
